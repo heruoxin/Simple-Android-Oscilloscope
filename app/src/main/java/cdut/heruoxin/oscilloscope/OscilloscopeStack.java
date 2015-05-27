@@ -17,17 +17,13 @@ public class OscilloscopeStack {
     private ArrayList<Float> decibelStack;
 
     public OscilloscopeStack(ValueLineChart mCubicValueLineChart, int color, int stackSize) {
-        decibelStack = new ArrayList<>(Arrays.asList(
-                0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f,
-                0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f //20 * 0f
-        ));
         this.mColor = color;
         this.mStackSize = stackSize;
         this.mCubicValueLineChart = mCubicValueLineChart;
-    }
-
-    public ArrayList<Float> getDecibelStack() {
-        return decibelStack;
+        this.decibelStack = new ArrayList<>();
+        for (int i =0; i < stackSize; i++) {
+            decibelStack.add(0f);
+        }
     }
 
     public synchronized void addToStack(float decibel) {
@@ -47,7 +43,6 @@ public class OscilloscopeStack {
             series.addPoint(new ValueLinePoint(String.valueOf(i), i));
         }
         mCubicValueLineChart.addSeries(series);
-        //mCubicValueLineChart.startAnimation();
     }
 
 }

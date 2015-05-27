@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
         oscilloscopeStack = new OscilloscopeStack(
                 mCubicValueLineChart,
                 getResources().getColor(R.color.accent),
-                20);
+                16);
 
         recorder = new AudioRecorder(16, new AudioRecorder.Callback() {
             @Override
@@ -86,9 +86,14 @@ public class MainActivity extends ActionBarActivity {
                                 R.drawable.ic_action_av_pause :
                                 R.drawable.ic_action_av_play
                 );
+            }
+        }, 400);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
                 if (isPaused) recorder.resume();
                 else recorder.pause();
             }
-        }, 400);
+        }, 200);
     }
 }
