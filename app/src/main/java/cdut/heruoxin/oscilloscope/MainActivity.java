@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
         oscilloscopeStack = new OscilloscopeStack(
                 mCubicValueLineChart,
                 getResources().getColor(R.color.accent),
-                16);
+                18);
 
         recorder = new AudioRecorder(16, new AudioRecorder.Callback() {
             @Override
