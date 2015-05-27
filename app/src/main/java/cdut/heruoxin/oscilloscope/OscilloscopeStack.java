@@ -5,6 +5,7 @@ import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by heruoxin on 15/5/27.
@@ -16,7 +17,10 @@ public class OscilloscopeStack {
     private ArrayList<Float> decibelStack;
 
     public OscilloscopeStack(ValueLineChart mCubicValueLineChart, int color, int stackSize) {
-        decibelStack = new ArrayList<>();
+        decibelStack = new ArrayList<>(Arrays.asList(
+                0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f,
+                0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f //20 * 0f
+        ));
         this.mColor = color;
         this.mStackSize = stackSize;
         this.mCubicValueLineChart = mCubicValueLineChart;
