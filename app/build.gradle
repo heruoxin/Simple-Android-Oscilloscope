@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "cdut.heruoxin.oscilloscope"
-        minSdkVersion 16
+        minSdkVersion 9
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"

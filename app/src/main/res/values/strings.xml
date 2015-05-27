@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Oscilloscope</string>
+    <string name="app_name">Simple Oscilloscope</string>
 
     <string name="action_about">About</string>
     <string name="button_start">Start</string>
