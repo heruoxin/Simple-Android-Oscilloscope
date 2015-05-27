@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">声音示波器</string>
+    <string name="action_about">关于</string>
+    <string name="button_start">开始</string>
+    <string name="button_stop">暂停</string>
+    <string name="summary_about">何若昕\n学号：201213030130\n2015年5月27号</string>
+</resources>

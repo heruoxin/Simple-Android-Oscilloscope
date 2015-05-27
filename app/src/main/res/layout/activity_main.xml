@@ -14,7 +14,7 @@
         app:egUseOverlapFill="true"
         app:egAnimationTime="0"
         app:egCurveSmoothness="0.4"
-        app:egIndicatorLineColor="#FE6DA8"
+        app:egIndicatorLineColor="@color/fab"
         app:egLegendHeight="40dp"
         app:egShowStandardValue="true"/>
 

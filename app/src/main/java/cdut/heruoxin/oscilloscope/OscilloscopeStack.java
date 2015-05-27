@@ -10,16 +10,16 @@ import java.util.ArrayList;
  * Created by heruoxin on 15/5/27.
  */
 public class OscilloscopeStack {
-    private final int size;
+    private final int mColor;
+    private final int mStackSize;
     private final ValueLineChart mCubicValueLineChart;
     private ArrayList<Float> decibelStack;
 
-    public OscilloscopeStack(ValueLineChart mCubicValueLineChart, int size) {
+    public OscilloscopeStack(ValueLineChart mCubicValueLineChart, int color, int stackSize) {
         decibelStack = new ArrayList<>();
-        this.size = size;
+        this.mColor = color;
+        this.mStackSize = stackSize;
         this.mCubicValueLineChart = mCubicValueLineChart;
-        final ValueLineSeries series = new ValueLineSeries();
-        series.setColor(0xFF56B7F1);
     }
 
     public ArrayList<Float> getDecibelStack() {
@@ -27,7 +27,7 @@ public class OscilloscopeStack {
     }
 
     public synchronized void addToStack(float decibel) {
-        if (decibelStack.size() > size) {
+        if (decibelStack.size() > mStackSize) {
             decibelStack.remove(0);
         }
         decibelStack.add(decibelStack.size(), decibel);
@@ -38,7 +38,7 @@ public class OscilloscopeStack {
     private void refreshGraph() {
         mCubicValueLineChart.clearChart();
         final ValueLineSeries series = new ValueLineSeries();
-        series.setColor(0xFF56B7F1);
+        series.setColor(mColor);
         for (float i : decibelStack) {
             series.addPoint(new ValueLinePoint(String.valueOf(i), i));
         }

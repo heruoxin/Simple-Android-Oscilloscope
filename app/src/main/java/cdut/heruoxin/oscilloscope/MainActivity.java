@@ -31,7 +31,10 @@ public class MainActivity extends ActionBarActivity {
         mStart = (Button) findViewById(R.id.button_start);
         mStop = (Button) findViewById(R.id.button_stop);
 
-        oscilloscopeStack = new OscilloscopeStack(mCubicValueLineChart, 20);
+        oscilloscopeStack = new OscilloscopeStack(
+                mCubicValueLineChart,
+                getResources().getColor(R.color.accent),
+                20);
 
         recorder = new AudioRecorder(20, new AudioRecorder.Callback() {
             @Override
