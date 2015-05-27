@@ -2,6 +2,8 @@
 
 Yet another android voice oscilloscope.
 
+![screenshot0](https://raw.githubusercontent.com/heruoxin/Simple-Android-Oscilloscope/master/release-files/screenshot0.png)
+
 ##Credits
 - [Xiaomi' Blog](http://blog.csdn.net/greatpresident/article/details/38402147)
 - [blackfizz/EazeGraph](https://github.com/blackfizz/EazeGraph)
