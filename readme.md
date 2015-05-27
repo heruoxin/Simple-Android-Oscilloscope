@@ -15,3 +15,7 @@ Yet another android voice oscilloscope.
 简易的 Android 示波器，捕捉声音信号，并显示成折线图。
 
 个人课堂习作。
+
+##下载
+
+<https://raw.githubusercontent.com/heruoxin/Simple-Android-Oscilloscope/master/app/app-release.apk>
