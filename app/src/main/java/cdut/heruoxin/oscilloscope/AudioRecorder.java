@@ -11,18 +11,20 @@ import android.media.MediaRecorder;
 public class AudioRecorder {
 
     private static final int SAMPLE_RATE_IN_HZ = 8000;
+    private long mWaitTime;
     private final Callback mCallback;
     private AudioRecord mAudioRecord;
     private final Object mLock;
     private boolean isGetVoiceRun;
-    private boolean paused = true;
+    private boolean isPaused = true;
     private static final int BUFFER_SIZE = AudioRecord.getMinBufferSize(
             SAMPLE_RATE_IN_HZ,
             AudioFormat.CHANNEL_IN_DEFAULT,
             AudioFormat.ENCODING_PCM_16BIT);
 
-    public AudioRecorder(Callback callback) {
+    public AudioRecorder(long waitTime, Callback callback) {
         mCallback = callback;
+        mWaitTime = waitTime;
         mLock = new Object();
     }
 
@@ -48,12 +50,12 @@ public class AudioRecorder {
                     }
                     double mean = v / (double) r;
                     double volume = 10 * Math.log10(mean);
-                    if (!paused) {
+                    if (!isPaused) {
                         mCallback.onDecibelGot(volume);
                     }
                     synchronized (mLock) {
                         try {
-                            mLock.wait(60);
+                            mLock.wait(mWaitTime);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -68,11 +70,11 @@ public class AudioRecorder {
     }
 
     public void pause() {
-        paused = true;
+        isPaused = true;
     }
 
     public void resume() {
-        paused = false;
+        isPaused = false;
     }
 
     public interface Callback {

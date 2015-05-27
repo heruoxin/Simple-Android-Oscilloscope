@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 
         oscilloscopeStack = new OscilloscopeStack(mCubicValueLineChart, 20);
 
-        recorder = new AudioRecorder(new AudioRecorder.Callback() {
+        recorder = new AudioRecorder(20, new AudioRecorder.Callback() {
             @Override
             public void onDecibelGot(final double decibel) {
                 mHandler.post(new Runnable() {
