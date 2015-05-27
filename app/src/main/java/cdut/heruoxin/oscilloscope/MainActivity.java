@@ -1,5 +1,6 @@
 package cdut.heruoxin.oscilloscope;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import org.eazegraph.lib.charts.ValueLineChart;
 
@@ -16,8 +18,6 @@ public class MainActivity extends ActionBarActivity {
 
     private OscilloscopeStack oscilloscopeStack;
     private AudioRecorder recorder;
-    private Button mStart;
-    private Button mStop;
     private Handler mHandler;
 
     @Override
@@ -28,15 +28,13 @@ public class MainActivity extends ActionBarActivity {
         mHandler = new Handler();
 
         ValueLineChart mCubicValueLineChart = (ValueLineChart) findViewById(R.id.cubiclinechart);
-        mStart = (Button) findViewById(R.id.button_start);
-        mStop = (Button) findViewById(R.id.button_stop);
 
         oscilloscopeStack = new OscilloscopeStack(
                 mCubicValueLineChart,
                 getResources().getColor(R.color.accent),
                 20);
 
-        recorder = new AudioRecorder(20, new AudioRecorder.Callback() {
+        recorder = new AudioRecorder(16, new AudioRecorder.Callback() {
             @Override
             public void onDecibelGot(final double decibel) {
                 mHandler.post(new Runnable() {
@@ -74,16 +72,23 @@ public class MainActivity extends ActionBarActivity {
                 .create().show();
     }
 
-    public void onStartClick(View view) {
-        mStart.setEnabled(false);
-        mStop.setEnabled(true);
-        recorder.resume();
+    public void mFabOnClick(final View view) {
+        final boolean isPaused = recorder.isPaused();
+        if (Build.VERSION.SDK_INT >= 12) {
+            view.setRotation(0);
+            view.animate().rotation(360).setDuration(600);
+        }
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((ImageButton) view).setImageResource(
+                        isPaused ?
+                                R.drawable.ic_action_av_pause :
+                                R.drawable.ic_action_av_play
+                );
+                if (isPaused) recorder.resume();
+                else recorder.pause();
+            }
+        }, 400);
     }
-
-    public void onStopClick(View view) {
-        mStart.setEnabled(true);
-        mStop.setEnabled(false);
-        recorder.pause();
-    }
-
 }

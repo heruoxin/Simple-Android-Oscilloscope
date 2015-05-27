@@ -77,6 +77,10 @@ public class AudioRecorder {
         isPaused = false;
     }
 
+    public boolean isPaused() {
+        return isPaused;
+    }
+
     public interface Callback {
         void onDecibelGot(double decibel);
     }

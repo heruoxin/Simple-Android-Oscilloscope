@@ -8,16 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingBottom="40dp">
-
         <org.eazegraph.lib.charts.ValueLineChart xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cubiclinechart"
+            android:paddingBottom="40dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_centerVertical="true"
             app:egAnimationTime="0"
             app:egCurveSmoothness="0.4"
             app:egIndicatorLineColor="@color/fab"
@@ -26,36 +22,21 @@
             app:egUseCubic="true"
             app:egUseOverlapFill="true" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cubiclinechart"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/main_fab"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/background_fab"
+        android:elevation="4dp"
+        android:onClick="mFabOnClick"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_action_av_play" />
 
-            <Button
-                android:id="@+id/button_start"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="true"
-                android:onClick="onStartClick"
-                android:text="@string/button_start" />
-
-            <View
-                android:layout_width="60dp"
-                android:layout_height="0dp" />
-
-            <Button
-                android:id="@+id/button_stop"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:onClick="onStopClick"
-                android:text="@string/button_stop" />
-
-        </LinearLayout>
-    </RelativeLayout>
 
 </RelativeLayout>

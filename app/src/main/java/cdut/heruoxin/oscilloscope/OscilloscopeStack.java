@@ -43,7 +43,7 @@ public class OscilloscopeStack {
             series.addPoint(new ValueLinePoint(String.valueOf(i), i));
         }
         mCubicValueLineChart.addSeries(series);
-        mCubicValueLineChart.startAnimation();
+        //mCubicValueLineChart.startAnimation();
     }
 
 }
