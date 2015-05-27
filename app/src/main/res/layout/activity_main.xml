@@ -28,6 +28,7 @@
         <Button
             android:text="@string/button_start"
             android:id="@+id/button_start"
+            android:enabled="true"
             android:onClick="onStartClick"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -38,6 +39,7 @@
         <Button
             android:text="@string/button_stop"
             android:id="@+id/button_stop"
+            android:enabled="false"
             android:onClick="onStopClick"
             android:layout_weight="1"
             android:layout_width="0dp"

@@ -30,7 +30,7 @@ public class OscilloscopeStack {
         if (decibelStack.size() > size) {
             decibelStack.remove(0);
         }
-        decibelStack.add(decibelStack.size() - 1, decibel);
+        decibelStack.add(decibelStack.size(), decibel);
 
         refreshGraph();
     }
