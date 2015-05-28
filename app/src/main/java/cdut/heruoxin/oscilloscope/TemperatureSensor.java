@@ -25,7 +25,7 @@ public class TemperatureSensor extends BaseSensor{
 
     public TemperatureSensor(Context context, long waitTime, final Callback callback) {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

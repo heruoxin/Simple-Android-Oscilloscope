@@ -1,6 +1,13 @@
 #Simple Android Oscilloscope
 
-Yet another android voice oscilloscope.
+Yet another android oscilloscope.
+
+Sensors:
+- Audio Sensor (dB)
+- Light Sensor (lx)
+- Magnetic Sensor (uT)
+- Temperature Sensor (°C)
+- Accelerometer Sensor (m·s^-2)
 
 ![screenshot0](https://raw.githubusercontent.com/heruoxin/Simple-Android-Oscilloscope/master/release-files/screenshot0.png)
 
