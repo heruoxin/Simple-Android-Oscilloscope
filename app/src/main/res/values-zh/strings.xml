@@ -5,4 +5,8 @@
     <string name="button_start">开始</string>
     <string name="button_stop">暂停</string>
     <string name="summary_about">何若昕\n学号：201213030130\n2015年5月27号</string>
+    <string name="accelerometer_sensor">加速度 (m·s^-2)</string>
+    <string name="audio_sensor">音量 (dB)</string>
+    <string name="light_sensor">光强 (lx)</string>
+    <string name="magnetic_sensor">磁场 (uT)</string>
 </resources>

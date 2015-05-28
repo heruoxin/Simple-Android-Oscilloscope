@@ -5,4 +5,8 @@
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>
     <string name="summary_about">Ruoxin He\n201213030130\nMay 27 2015</string>
+    <string name="audio_sensor">Audio Sensor (dB)</string>
+    <string name="light_sensor">Light Sensor (lx)</string>
+    <string name="magnetic_sensor">Magnetic Sensor (uT)</string>
+    <string name="accelerometer_sensor">Accelerometer Sensor (m·s^-2)</string>
 </resources>

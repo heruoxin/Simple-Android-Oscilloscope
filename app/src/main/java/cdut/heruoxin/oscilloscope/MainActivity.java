@@ -8,8 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import org.eazegraph.lib.charts.ValueLineChart;
 
@@ -24,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     private Handler mHandler;
 
     private BaseSensor currentSensor;
+    private BaseSensor[] sensors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,37 @@ public class MainActivity extends ActionBarActivity {
         lightSensor = new LightSensor(this, 40, mCallback);
         magneticSensor = new MagneticSensor(this, 40, mCallback);
         accelerometerSensor = new AccelerometerSensor(this, 40, mCallback);
+        sensors = new BaseSensor[]{audioSensor, lightSensor, magneticSensor, accelerometerSensor};
+        currentSensor = audioSensor;
 
+        initSpinner();
+
+    }
+
+    private void initSpinner() {
+        Spinner spinner = (Spinner) findViewById(R.id.sensors_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sensors_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                oscilloscopeStack.resetStack();
+                if (!currentSensor.isPaused()) {
+                    currentSensor.pause();
+                    currentSensor = sensors[position];
+                    currentSensor.resume();
+                } else {
+                    currentSensor = sensors[position];
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
