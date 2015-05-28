@@ -20,8 +20,12 @@ public class OscilloscopeStack {
         this.mColor = color;
         this.mStackSize = stackSize;
         this.mCubicValueLineChart = mCubicValueLineChart;
+        resetStack();
+    }
+
+    public void resetStack() {
         this.decibelStack = new ArrayList<>();
-        for (int i =0; i < stackSize; i++) {
+        for (int i =0; i < mStackSize; i++) {
             decibelStack.add(0f);
         }
     }

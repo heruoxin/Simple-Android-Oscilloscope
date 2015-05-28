@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageButton;
 
 import org.eazegraph.lib.charts.ValueLineChart;
@@ -17,8 +17,13 @@ import org.eazegraph.lib.charts.ValueLineChart;
 public class MainActivity extends ActionBarActivity {
 
     private OscilloscopeStack oscilloscopeStack;
-    private AudioRecorder recorder;
+    private AudioSensor audioSensor;
+    private LightSensor lightSensor;
+    private MagneticSensor magneticSensor;
+    private AccelerometerSensor accelerometerSensor;
     private Handler mHandler;
+
+    private BaseSensor currentSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +31,9 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         mHandler = new Handler();
-
-        ValueLineChart mCubicValueLineChart = (ValueLineChart) findViewById(R.id.cubiclinechart);
-
-        oscilloscopeStack = new OscilloscopeStack(
-                mCubicValueLineChart,
-                getResources().getColor(R.color.accent),
-                18);
-
-        recorder = new AudioRecorder(16, new AudioRecorder.Callback() {
+        BaseSensor.Callback mCallback = new BaseSensor.Callback() {
             @Override
-            public void onDecibelGot(final double decibel) {
+            public void onValueChanged(final double decibel) {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -44,7 +41,19 @@ public class MainActivity extends ActionBarActivity {
                     }
                 });
             }
-        }).start();
+        };
+
+        ValueLineChart mCubicValueLineChart = (ValueLineChart) findViewById(R.id.cubiclinechart);
+
+        oscilloscopeStack = new OscilloscopeStack(
+                mCubicValueLineChart,
+                getResources().getColor(R.color.accent),
+                40);
+
+        audioSensor = new AudioSensor(16, mCallback);
+        lightSensor = new LightSensor(this, 40, mCallback);
+        magneticSensor = new MagneticSensor(this, 40, mCallback);
+        accelerometerSensor = new AccelerometerSensor(this, 40, mCallback);
 
     }
 
@@ -73,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void mFabOnClick(final View view) {
-        final boolean isPaused = recorder.isPaused();
+        final boolean isPaused = currentSensor.isPaused();
         if (Build.VERSION.SDK_INT >= 12) {
             view.setRotation(0);
             view.animate().rotation(360).setDuration(600);
@@ -91,9 +100,10 @@ public class MainActivity extends ActionBarActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (isPaused) recorder.resume();
-                else recorder.pause();
+                if (isPaused) currentSensor.resume();
+                else currentSensor.pause();
             }
         }, 200);
     }
+
 }

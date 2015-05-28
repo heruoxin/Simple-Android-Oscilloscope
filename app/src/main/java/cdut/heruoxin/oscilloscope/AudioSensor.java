@@ -8,7 +8,7 @@ import android.media.MediaRecorder;
  * Created by heruoxin on 15/5/27.
  */
 
-public class AudioRecorder {
+public class AudioSensor extends BaseSensor {
 
     private static final int SAMPLE_RATE_IN_HZ = 8000;
     private long mWaitTime;
@@ -16,21 +16,21 @@ public class AudioRecorder {
     private AudioRecord mAudioRecord;
     private final Object mLock;
     private boolean isGetVoiceRun;
-    private boolean isPaused = true;
     private static final int BUFFER_SIZE = AudioRecord.getMinBufferSize(
             SAMPLE_RATE_IN_HZ,
             AudioFormat.CHANNEL_IN_DEFAULT,
             AudioFormat.ENCODING_PCM_16BIT);
 
-    public AudioRecorder(long waitTime, Callback callback) {
+    public AudioSensor(long waitTime, Callback callback) {
         mCallback = callback;
         mWaitTime = waitTime;
         mLock = new Object();
+        start();
     }
 
-    public AudioRecorder start() {
+    private void start() {
         if (isGetVoiceRun) {
-            return this;
+            return;
         }
         mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
                 SAMPLE_RATE_IN_HZ, AudioFormat.CHANNEL_IN_DEFAULT,
@@ -51,7 +51,7 @@ public class AudioRecorder {
                     double mean = v / (double) r;
                     double volume = 10 * Math.log10(mean);
                     if (!isPaused) {
-                        mCallback.onDecibelGot(volume);
+                        mCallback.onValueChanged(volume);
                     }
                     synchronized (mLock) {
                         try {
@@ -66,23 +66,6 @@ public class AudioRecorder {
                 mAudioRecord = null;
             }
         }).start();
-        return this;
-    }
-
-    public void pause() {
-        isPaused = true;
-    }
-
-    public void resume() {
-        isPaused = false;
-    }
-
-    public boolean isPaused() {
-        return isPaused;
-    }
-
-    public interface Callback {
-        void onDecibelGot(double decibel);
     }
 
 }
