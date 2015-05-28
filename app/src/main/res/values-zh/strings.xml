@@ -9,4 +9,5 @@
     <string name="audio_sensor">音量 (dB)</string>
     <string name="light_sensor">光强 (lx)</string>
     <string name="magnetic_sensor">磁场 (uT)</string>
+    <string name="temperature_sensor">温度 (°C)</string>
 </resources>

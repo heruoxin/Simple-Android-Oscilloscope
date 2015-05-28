@@ -14,7 +14,7 @@ import java.util.TimerTask;
 /**
  * Created by heruoxin on 15/5/28.
  */
-public class LightSensor extends BaseSensor{
+public class TemperatureSensor extends BaseSensor{
 
     private final Sensor lightSensor;
     private final SensorManager sensorManager;
@@ -23,9 +23,9 @@ public class LightSensor extends BaseSensor{
 
     private volatile double mValue = 0;
 
-    public LightSensor(Context context,long waitTime, final Callback callback) {
+    public TemperatureSensor(Context context, long waitTime, final Callback callback) {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

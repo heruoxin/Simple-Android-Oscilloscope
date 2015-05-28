@@ -4,6 +4,7 @@
         <item>@string/audio_sensor</item>
         <item>@string/light_sensor</item>
         <item>@string/magnetic_sensor</item>
+        <item>@string/temperature_sensor</item>
         <item>@string/accelerometer_sensor</item>
     </string-array>
 </resources>

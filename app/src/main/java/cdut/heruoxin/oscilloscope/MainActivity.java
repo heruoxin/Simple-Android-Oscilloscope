@@ -22,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
     private AudioSensor audioSensor;
     private LightSensor lightSensor;
     private MagneticSensor magneticSensor;
+    private TemperatureSensor temperatureSensor;
     private AccelerometerSensor accelerometerSensor;
     private Handler mHandler;
 
@@ -56,8 +57,10 @@ public class MainActivity extends ActionBarActivity {
         audioSensor = new AudioSensor(16, mCallback);
         lightSensor = new LightSensor(this, 40, mCallback);
         magneticSensor = new MagneticSensor(this, 40, mCallback);
+        temperatureSensor = new TemperatureSensor(this, 40, mCallback);
         accelerometerSensor = new AccelerometerSensor(this, 40, mCallback);
-        sensors = new BaseSensor[]{audioSensor, lightSensor, magneticSensor, accelerometerSensor};
+        sensors = new BaseSensor[]
+                {audioSensor, lightSensor, magneticSensor, temperatureSensor, accelerometerSensor};
         currentSensor = audioSensor;
 
         initSpinner();

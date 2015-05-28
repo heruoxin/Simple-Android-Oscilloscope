@@ -8,5 +8,6 @@
     <string name="audio_sensor">Audio Sensor (dB)</string>
     <string name="light_sensor">Light Sensor (lx)</string>
     <string name="magnetic_sensor">Magnetic Sensor (uT)</string>
+    <string name="temperature_sensor">Temperature Sensor (°C)</string>
     <string name="accelerometer_sensor">Accelerometer Sensor (m·s^-2)</string>
 </resources>
